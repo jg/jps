@@ -30,7 +30,7 @@ satisfied( State, [Goal | Goals])  :-
 
 select( State, Goals, Goal)  :-
   member( Goal, Goals),
-  not member( Goal, State).                % Goal not satisfied already
+  not( member( Goal, State)).                % Goal not satisfied already
 
 % achieves( Action, Goal): Goal is add-list of Action
 
@@ -57,3 +57,7 @@ delete_all( [X | L1], L2, Diff)  :-
 delete_all( [X | L1], L2, [X | Diff])  :-
   delete_all( L1, L2, Diff).
 
+conc(L1, L2, L3) :- append(L1, L2, L3).
+% conc([], L2, L2).
+% conc([_|L1], L2, [_|L3) :-
+%   conc(L1, L2, L3).
