@@ -1,0 +1,45 @@
+ ZADANIE   1
+
+
+ZADANIE POLEGA NA :
+
+1. przeanalizowaniu działania programu implementującego algorytm planowania sekwencji akcji według metody means-ends analysis w wersji podstawowej,
+
+2. wprowadzeniu do programu zmian niezbędnych do przekształcenia tego programu w implementację algorytmu means-ends  w wersji bez niedeterministycznego ukonkretniania celów w kolejnych rekurencyjnych krokach konstruowania preplanu (szczegóły niżej)  
+
+3. zbadaniu, czy podobna zmiana algorytmu jest możliwa do wprowadzenia w wersji z regresją celów (rozwinięcie tego punktu niżej)
+
+
+
+Wyjaśnienia do punktu (2) :
+
+Zmodyfikowany algorytm, po dobraniu  akcji do  celu przetwarzanego w danym kroku rekurencyjnym i  skonstruowaniu listy celów warunkujących wykonalność tej akcji, pozostawia nie ukonkretnione w opisie celów te obiekty, które nie są ukonkretnione w opisie akcji--w przeciwieństwie do algorytmu w wersji podstawowej, który niedeterministycznie ukonkretnia wszystkie obiekty, które w opisie akcji są reprezentowane przez zmienne.  Obiekty występujące w liście celów na danym poziomie rekurencji zostają ukonkretnione dopiero z chwilą skonstruowania pełnego planu osiągnięcia wszystkich celów z listy, gdy lista celów spełnia warunek zakończenia rekurencji (wszystkie cele spełnione w aktualnym stanie początkowym).
+
+Opisana modyfikacja algorytmu wymaga w szczególności
+
+--zmiany reprezentacji celów: cele muszą być reprezentowane w postaci bardziej złożonych struktur, które umożliwią poprawny wybór celu do przetwarzania, z uwzględnieniem współzależności między nie ukonkretnionymi celami
+
+--dostosowaniu procedur przetwarzających cele i akcje do założeń zmodyfikowanego algorytmu i do przyjętej zmienionej reprezentacji celów
+
+--zaimplementowania odroczonego wykrywania bezsensownych kombinacji obiektów jako argumentów akcji (obiekt przenoszony identyczny z miejscem docelowym, itp.). To sprawdzenie, w wersji podstawowej wykonywane w procedurze ukonkretniającej cele, w wersji zmodyfikowanej musi być odroczone aż do chwili w przebiegu wykonania algorytmu, gdy obiekty podlegające sprawdzeniu zostaną ukonkretnione. 
+
+
+
+Podpowiedź do punktu (3) :
+
+Na czym polega problem z zastosowaniem koncepcji nie ukonkretniania celów w przypadku wersji algorytmu z regresją celów? Jak zmodyfikować rozwiązanie przyjęte dla wersji podstawowej, aby również w wersji z regresją  skorzystać z koncepcji nie ukonkretniania celów dla poprawienia efektywności ? (wskazówka:  może częściowo ukonkretniać ?) . 
+
+
+INFORMACJA O MATERIAŁACH DO ZADANIA NA NAST. STRONIE	
+
+
+*********
+Kod źródłowy  planera w wersji podstawowej i w wersji  z regresją celów należy pobrać ze stron na companion website do podręcznika Ivana Bratko:
+http://www.pearsoned.co.uk/highereducation/resources/bratkoprologprogrammingforartificialintelligence3e/
+--numery przykładów:
+	 17.2, 17.5 -- wersja podstawowa
+	 17.2, 17.8 -- wersja z regresją celów
+
+Materiały pomocnicze  do zadania są zawarte w katalogu  Prolog/Programy studialne/Programy planujace  na stronie przedmiotu . Katalog zawiera w szczególności:
+--wprowadzenie do algorytmów planowania metodą means-ends
+--szczegółowe komentarze do implementacji programowej obu wersji
