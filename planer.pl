@@ -13,7 +13,7 @@ plan( State, Goals, [], State)  :-                 % Plan is empty
 
 plan( State, Goals, Plan, FinalState)  :-
   conc( PrePlan, [Action | PostPlan], Plan),        % Divide plan
-  pselect( State, Goals, Goal),                      % Select a goal
+  select( State, Goals, Goal),                      % Select a goal
   achieves( Action, Goal),                          % Relevant action
   can( Action, Condition),
   plan( State, Condition, PrePlan, MidState1),      % Enable Action
@@ -28,9 +28,9 @@ satisfied( State, [Goal | Goals])  :-
   member( Goal, State),
   satisfied( State, Goals).
 
-pselect( State, Goals, Goal)  :-
+select( State, Goals, Goal)  :-
   member( Goal, Goals),
-  not( member( Goal, State)).    
+  not member( Goal, State).                % Goal not satisfied already
 
 % achieves( Action, Goal): Goal is add-list of Action
 
@@ -57,5 +57,3 @@ delete_all( [X | L1], L2, Diff)  :-
 delete_all( [X | L1], L2, [X | Diff])  :-
   delete_all( L1, L2, Diff).
 
-conc(L1, L2, L3) :-
-  append(L1, L2, L3).
