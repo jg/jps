@@ -1,4 +1,4 @@
-Run with (w/ trace):
+Run (w/ trace):
 
     ?- [planer, world].
     ?- trace.
