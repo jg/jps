@@ -6,13 +6,14 @@
 
 % can( Action, Condition): Action possible if Condition true
 
-can( move( Block, From, To), [ clear( Block), clear( To), on( Block, From)] ) :-
-  is_block( Block),      % Block to be moved
-  object( To),           % "To" is a block or a place
-  To \== Block,          % Block cannot bå moved to itself
-  object( From),         % "From" is a block or a place
-  From \== To,           % Move to new position
-  Block \== From.        % Block not moved from itself
+can( move( Block, From, To), [ clear( Block), clear( To), on( Block, From), different(From, To), different(Block, From)] ).
+  % :-
+  % is_block( Block),      % Block to be moved
+  % object( To),           % "To" is a block or a place
+  % To \== Block,          % Block cannot bå moved to itself
+  % object( From),         % "From" is a block or a place
+  % From \== To,           % Move to new position
+  % Block \== From.        % Block not moved from itself
 
 % adds( Action, Relationships): Action establishes Relationships
 

@@ -25,8 +25,31 @@ plan( State, Goals, Plan, FinalState)  :-
 satisfied( State, []).
 
 satisfied( State, [Goal | Goals])  :-
-  member( Goal, State),
+  member(Goal, Goals),
   satisfied( State, Goals).
+
+% Satisfied clause for pseudo-goal 'different'
+satisfied( State, [Goal | Goals])  :-
+  holds(Goal),
+  satisfied( State, Goals).
+
+% Uninstantiated and do not match
+holds(different(X, Y)) :-
+  var(X),
+  var(Y),
+  X \== Y.
+
+% Instantiated and different
+holds(different(X, Y)) :-
+  not (var(X)),
+  not (var(Y)),
+  not (X == Y).
+
+% TODO: X and Y match but not literally the same => postpone until further instantiation
+% holds(different(X, Y)) :-
+%   var(X),
+%   var(Y),
+%   X \== Y.
 
 select( State, Goals, Goal)  :-
   member( Goal, Goals),
