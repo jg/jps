@@ -1,8 +1,8 @@
 Run (w/ trace):
 
-    ?- [planer, world].
+    ?- [planer].
     ?- trace.
-    ?- plan(state1, [on(a,b)], Plan, FinState).
+    ?- state1(State), plan(State, [on(a,b)], Plan, FinState).
     ?- notrace.
 
 state1 is:
